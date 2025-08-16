@@ -3,7 +3,7 @@ from fastapi import APIRouter, status
 from .schemas import KeywordSearchRequest, KeywordSearchResponse
 from .service import KeywordSearchService
 
-router = APIRouter(prefix="/search")
+router = APIRouter()
 
 @router.post("/keyword-search", status_code=status.HTTP_200_OK, response_model=List[KeywordSearchResponse])
 async def keyword_search(payload: KeywordSearchRequest):
