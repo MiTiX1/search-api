@@ -2,6 +2,7 @@ import uvicorn
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, APIRouter
 from .keyword_search import keyword_search_router
+from .semantic_search import semantic_search_router
 from .commons.clients import cloud_sql_client
 from .config import GcpConfig
 
@@ -27,8 +28,8 @@ api_router = APIRouter(prefix="/api/v1")
 def health():
     return {"status": "up"}
 
-
 api_router.include_router(router=keyword_search_router)
+api_router.include_router(router=semantic_search_router)
 app.include_router(api_router)
 
 if __name__ == "__main__":
