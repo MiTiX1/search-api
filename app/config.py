@@ -11,4 +11,4 @@ class GcpConfig:
         db_name = os.environ.get("DB_NAME")
 
         document_chunks_table = os.environ.get("DOCUMENT_CHUNKS_TABLE", "document_chunks")
-    
+        document_chunks_embeddings_table = os.environ.get("DOCUMENT_CHUNKS_EMBEDDINGS_TABLE", "document_chunks_embeddings")
