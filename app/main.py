@@ -22,7 +22,7 @@ async def lifespan(app: FastAPI):
     await cloud_sql_client.close()
 
 app = FastAPI(lifespan=lifespan)
-api_router = APIRouter(prefix="/api/v1")
+api_router = APIRouter(prefix="/api/v1/search")
 
 @api_router.get("/_health")
 def health():

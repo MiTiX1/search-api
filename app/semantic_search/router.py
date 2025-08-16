@@ -3,7 +3,7 @@ from fastapi import APIRouter, status
 from .schemas import SemanticSearchRequest, SemanticSearchResponse
 from .service import SemanticSearchService
 
-router = APIRouter(prefix="/search")
+router = APIRouter()
 
 @router.post("/semantic-search", status_code=status.HTTP_200_OK, response_model=List[SemanticSearchResponse])
 async def semantic_search(payload: SemanticSearchRequest):
