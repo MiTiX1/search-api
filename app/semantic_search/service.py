@@ -13,15 +13,15 @@ class SemanticSearchService:
 
     @staticmethod
     async def search(query: str, limit: int = 10) -> List[Dict[str, Any]]:
-        query_embedding = str(SemanticSearchService._model.encode(query).tolist())
+        query_embedding = str(SemanticSearchService._model.encode(query, normalize_embeddings=True).tolist())
         
         stmt = text(f"""
         SELECT document_id,
                chunk_id,
                content,
-               1 - (embedding <=> :query_embedding) AS similarity
+               1 - (embedding <#> :query_embedding) AS similarity
         FROM {GcpConfig.CloudSQLConfig.document_chunks_embeddings_table}
-        ORDER BY embedding <=> :query_embedding
+        ORDER BY embedding <#> :query_embedding
         LIMIT :limit;
         """)
 
